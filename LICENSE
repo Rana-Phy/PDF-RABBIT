@@ -1,0 +1,221 @@
+PDF-RABBIT Academic Software License
+====================================
+
+Copyright (c) 2026 Rana Hossain
+Laboratory of Structural Inorganic Chemistry
+Division of Applied Chemistry, Faculty of Engineering
+Hokkaido University, Sapporo, Japan
+
+All rights reserved.
+
+
+1. DEFINITIONS
+--------------
+
+   "Software"   means the PDF-RABBIT package, including all source code,
+                obfuscated binaries, wheel files, documentation, examples,
+                and any associated materials.
+
+   "Author"     means Rana Hossain and any co-developers explicitly
+                acknowledged in the Software's metadata.
+
+   "Licensee"   means the individual researcher, research group, or
+                organization to whom a license key for the Software has
+                been issued by the Author.
+
+   "Group"      means the specific laboratory, research unit, or
+                organization named in the license key issued to the
+                Licensee.
+
+
+2. GRANT OF LICENSE
+-------------------
+
+   Subject to the terms below, the Author grants the Licensee a
+   non-exclusive, non-transferable, revocable license to install and
+   use the Software for research, education, and analysis purposes
+   within the Group named in the license key. Both academic and
+   commercial use are permitted, subject to the conditions below.
+
+
+3. PERMITTED USES
+-----------------
+
+   The Licensee MAY:
+
+   (a) Install the Software on computers used for the Licensee's
+       research or analysis work within the Group.
+
+   (b) Use the Software to analyze experimental data and produce
+       scientific or technical results, for academic or commercial
+       purposes.
+
+   (c) Publish papers, posters, theses, presentations, technical
+       reports, or internal documents based on results produced by
+       the Software, with citation as described in Section 5 where
+       applicable.
+
+   (d) Share the *results* (analyzed data, plots, fitted parameters,
+       conclusions) freely.
+
+
+4. PROHIBITED USES
+------------------
+
+   The Licensee MAY NOT:
+
+   (a) Redistribute the Software, the wheel file, the license key, or
+       any part of the Software in any form to any individual or
+       organization outside the Group, including but not limited to:
+       other laboratories, collaborators, students at other
+       institutions, public repositories, file-sharing services, or
+       customers / clients.
+
+   (b) Modify, decompile, disassemble, reverse-engineer, or attempt
+       to recover the source code of the Software, except to the
+       extent expressly permitted by applicable law.
+
+   (c) Remove, alter, or obscure any copyright, attribution, license,
+       or trademark notices contained in the Software or its output.
+
+   (d) Bundle, repackage, or incorporate the Software into a
+       commercial product, service, or platform offered to third
+       parties, without prior written permission from the Author.
+
+   (e) Use the Software in a manner that violates applicable laws,
+       institutional policies, or third-party rights.
+
+   (f) Sublicense, rent, lease, sell, or otherwise transfer rights to
+       the Software.
+
+
+5. CITATION (where applicable)
+------------------------------
+
+   When publishing scientific results, presenting work at conferences,
+   submitting theses or dissertations, or producing publicly-released
+   technical reports based on analyses performed with the Software,
+   the Licensee is asked to:
+
+   (a) Cite the Software (currently:
+       "R. Hossain, PDF-RABBIT, Hokkaido University, manuscript in
+       preparation"; this citation will be updated when a peer-
+       reviewed publication is available).
+
+   (b) Include a brief acknowledgment, for example:
+       "Pair distribution function analysis was performed using
+       PDF-RABBIT (R. Hossain, Hokkaido University)."
+
+   For purely internal analysis or unpublished commercial work,
+   citation is not strictly required, though acknowledgment is
+   appreciated.
+
+   The Licensee agrees to update the citation to the most current
+   reference issued by the Author when one becomes available.
+
+
+6. COMMERCIAL USE — VOLUNTARY DONATION
+--------------------------------------
+
+   Commercial use of the Software is permitted under this license at
+   no cost. As a goodwill gesture supporting continued development,
+   commercial users (industrial laboratories, contract research
+   organizations, or for-profit entities) are kindly encouraged to:
+
+   (a) Notify the Author of their use of the Software (a brief email
+       is sufficient), and
+
+   (b) Make a voluntary good-faith donation to support ongoing
+       development and maintenance of the Software.
+
+   This is a request, not a contractual requirement. No specific
+   amount is prescribed, and lack of donation does not constitute a
+   breach of this license.
+
+   To inquire about donations or commercial collaboration, contact
+   the Author at the address in Section 10.
+
+
+7. ACTIVATION AND NOTIFICATION
+------------------------------
+
+   The Licensee acknowledges that activation of the Software:
+
+   (a) Collects identifying information including the Licensee's name,
+       designation, computer name, operating system, Python version,
+       a hashed machine identifier, and approximate location derived
+       from the public IP address.
+
+   (b) Transmits this information once to the Author and the Author's
+       supervisor for license management and audit purposes.
+
+   (c) Stores a local license file on the Licensee's machine.
+
+   By activating the Software, the Licensee consents to this collection
+   and transmission.
+
+
+8. NO WARRANTY
+--------------
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+   NON-INFRINGEMENT. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+   CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+   CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN
+   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
+   Scientific and technical results produced by the Software remain
+   the responsibility of the Licensee. The Author makes no
+   representation that the Software is free of bugs or that results
+   are scientifically correct in all circumstances.
+
+
+9. TERMINATION
+--------------
+
+   This license is effective until terminated. The license terminates
+   automatically and without notice if the Licensee breaches any term
+   of this agreement. Upon termination, the Licensee must:
+
+   (a) Cease all use of the Software.
+   (b) Delete all copies of the Software from all computers under
+       the Licensee's control.
+   (c) Confirm deletion in writing to the Author upon request.
+
+   The Author may also terminate this license at any time, with or
+   without cause, by written notice to the Licensee.
+
+
+10. CONTACT
+-----------
+
+    For license requests, donation inquiries, citation updates, bug
+    reports, or other questions:
+
+        Rana Hossain  (Developer)
+        Postdoctoral Research Associate
+        Laboratory of Structural Inorganic Chemistry
+        Faculty of Engineering, Hokkaido University
+        Sapporo, Japan
+        Email (primary):       rana.phy.buet@gmail.com
+        Email (institutional): rana@eng.hokudai.ac.jp
+
+        Professor Akira Miura  (Supervisor)
+        Email: amiura@eng.hokudai.ac.jp
+
+
+11. GOVERNING LAW
+-----------------
+
+    This license shall be governed by and construed in accordance with
+    the laws of Japan, without regard to its conflict-of-laws
+    provisions.
+
+
+-----------------------------------------------------------------------
+By installing, activating, or using PDF-RABBIT, the Licensee acknowledges
+that they have read, understood, and agreed to be bound by these terms.
+-----------------------------------------------------------------------
