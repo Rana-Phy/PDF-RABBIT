@@ -33,7 +33,7 @@ PDF-RABBIT is designed to analyze changes in local structural features from high
 
 ## Examples
 
-Annotated Jupyter notebooks demonstrating typical workflows — including data loading, correction, optimization, `G(r)` extraction, and post-processing — will be provided in the [`notebooks/`](./notebooks) directory of this repository.
+Provided in the [`notebooks/`](./notebooks) directory of this repository.
 
 ---
 
@@ -99,18 +99,18 @@ To promote reproducibility, users are encouraged to report optimized parameters 
 
 Rana Hossain  
 Postdoctoral Research Associate  
+
+### Supervisoion
+
+Akira Miura
+Professor
 Laboratory of Structural Inorganic Chemistry  
 Division of Applied Chemistry, Faculty of Engineering  
 Hokkaido University, Sapporo, Japan
 
-### Supervisor
-
-Professor Akira Miura
-
 ### Email
 
-- rana.phy.buet@gmail.com
-- rana@eng.hokudai.ac.jp  
+- rana.phy.buet@gmail.com; rana@eng.hokudai.ac.jp  
   cc: amiura@eng.hokudai.ac.jp
 
 For access requests, donation inquiries, or general questions, please include:
