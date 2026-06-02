@@ -146,21 +146,12 @@ FT_ra = calculate_Gr(
     sq          = sq,
     r_step      = 0.01,    # Å — real-space grid spacing
     r_max       = 100,     # Å — maximum r
-    sigma2      = 0,       # Gaussian damping (0 = none)
-    window_type = 3,       # Lorch modification function (3 = standard Lorch)
+    window_type = 1,       # Lorch modification function (1 = standard Lorch)
 )
 
 r, G0, q_interp, Sq_used, fq_initial, fq_used = FT_ra.compute()
 ```
 
-**`window_type` options**
-
-| Value | Function |
-|---|---|
-| `0` | None (rectangular — maximum resolution, highest termination ripple) |
-| `1` | Hann |
-| `2` | Hamming |
-| `3` | Lorch (recommended — suppresses termination ripple with minimal broadening) |
 
 ---
 
