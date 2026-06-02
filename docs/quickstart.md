@@ -1,7 +1,7 @@
 # Quick Start Guide
 This guide demonstrates how to obtain **S(Q)** and **G(r)** from X-ray diffraction data using PDF-Rabbit.
-Only the **Step 0 — User Inputs** section needs to be modified for a particular experiment.
-The remainder of the workflow can typically be executed without changes.
+- Only the **Step 0 — User Inputs** section needs to be modified for a particular experiment.
+- The remainder of the workflow can typically be executed without changes.
 # Step 0 — User Inputs
 Edit only the variables below.
 ```python
@@ -108,7 +108,7 @@ The optimization attempts to enforce:
 * S(Q) → 1 at high Q
 * F(Q) → 0 at high Q
 ```python
-SQ_optimizer_rk = OptSq(
+SQ_optimizer = OptSq(
     Q           = ap.Q,
     two_theta   = two_theta,
     I_sample    = I_raw,
@@ -129,15 +129,15 @@ SQ_optimizer_rk = OptSq(
     sys_bias            = sys_bias,
     scaling_by          = scaling_by,
 )
-optimizer = SqOptimizer(SQ_optimizer_rk)
+optimizer = SqOptimizer(SQ_optimizer)
 optimizer.optimize()
-SQ_optimizer_rk.report()
-sq_results_rk = SQ_optimizer_rk.get_results()
+SQ_optimizer.report()
+sq_results = SQ_optimizer.get_results()
 ```
 # Step 7 — Calculate G(r)
 ```python
-q  = SQ_optimizer_rk.Q
-sq = SQ_optimizer_rk.S_FZ_final
+q  = SQ_optimizer.Q
+sq = SQ_optimizer.S_FZ_final
 FT_ra = calculate_Gr(
     q           = q,
     sq          = sq,
