@@ -1,4 +1,4 @@
-# Introduction
+# PDF-RABBIT
 
 PDF-RABBIT was developed in the [Laboratory of Structural Inorganic Chemistry](https://strchem.eng.hokudai.ac.jp/) at Hokkaido University, under the supervision of Professor [Akira Miura](https://researchmap.jp/amiura).
 
@@ -17,10 +17,6 @@ These steps are usually split across different programs and rely on manual treat
 2. Stubkjær, R. B. *et al.* [Reliability of Pair Distribution Function Analysis in In Situ Experiments](https://doi.org/10.1107/S1600576725001694). *Journal of Applied Crystallography* **2025**, *58*(2).
 
 PDF-RABBIT unifies these steps and removes the manual guesswork.
-- It tunes the correction parameters by automated optimization
-
-To ensure
-- accurate normalization to electronic scale
-
-Such that
-- The extracted `S(Q)` and `F(Q)` obey known physical limits, then extracts `g(r)` and related functions.
+It tunes the correction parameters by automated optimization.  
+- To ensure accurate normalization to electronic scale.  
+- Such that the extracted `S(Q)` and `F(Q)` obey known physical limits, then extracts `g(r)` and related functions.
