@@ -7,6 +7,7 @@ Reducing total scattering data requires several steps:
 - Angle dependent intensity corrections — secondary scattering, polarization, absorption, background subtraction, and fluorescence.
 - Normalization to electron units.
 - Subtraction of incoherent and Laue monotonic scattering.
+
 These steps are usually split across different programs and rely on manual treatment. As a result, for the same total scattering data:
 - The resulting `S(Q)` and `g(r)` are hard to reproduce.
 - The local structure obtained can depend strongly on the analysis tools used.
