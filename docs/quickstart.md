@@ -181,29 +181,6 @@ G1 = pp_ra.Gr_final   # post-processed G(r)
 
 ---
 
-## Step 8 — Iterative Back-transform Refinement
-
-`get_rSq` provides Fourier back-transforms to iteratively refine S(Q) and G(r). Each cycle suppresses unphysical low-r oscillations while preserving the high-Q information.
-
-```python
-ift = get_rSq(q_arry=q_interp, r_arry=r)
-
-# Cycle 1
-S1 = ift.Gr_to_rSq(G1)    # G(r) → S(Q)
-G2 = ift.rSq_to_rGr(S1)   # S(Q) → G(r)  (low-r constrained)
-
-# Cycle 2
-S2 = ift.Gr_to_rSq(G2)
-G3 = ift.rSq_to_rGr(S2)
-
-# Cycle 3
-S3 = ift.Gr_to_rSq(G3)
-```
-
-Two to three cycles are typically sufficient. More cycles rarely improve the result further.
-
----
-
 ## Step 9 — Save Results
 
 ```python
@@ -212,11 +189,9 @@ base_name = data_file.replace('.dat', '')
 # G(r) at each refinement stage
 np.savetxt(folder + base_name + ".G0", np.column_stack((r, G0)))   # raw FT
 np.savetxt(folder + base_name + ".G1", np.column_stack((r, G1)))   # after post-process
-np.savetxt(folder + base_name + ".G3", np.column_stack((r, G3)))   # after 3 back-transform cycles
 
 # S(Q)
 np.savetxt(folder + base_name + ".S0", np.column_stack((q_interp, Sq_used)))  # optimised S(Q)
-np.savetxt(folder + base_name + ".S3", np.column_stack((q_interp, S3)))       # after 3 back-transform cycles
 ```
 
 All output files are plain two-column ASCII (space-delimited): `r  G(r)` or `Q  S(Q)`.
@@ -229,29 +204,28 @@ All output files are plain two-column ASCII (space-delimited): `r  G(r)` or `Q  
 Raw .dat files
       │
       ▼
-XrayDataProcessor          — mask dead zones, extrapolate low-angle
+XrayDataProcessor         
       │
       ▼
-ExperimentalInfo           — geometry, composition, density, wavelength
+ExperimentalInfo          
       │
       ▼
-AtomicDataProcessor        — form factors f², Compton CFF, BDR factor
+AtomicDataProcessor       
       │
       ▼
-IntensityCorrection        — absorption (PP), secondary scatter, fluorescence
+IntensityCorrection        
       │
       ▼
-OptSq + SqOptimizer        — optimise S(Q): background, polarisation, Compton, α
+OptSq + SqOptimizer       
       │
       ▼
-calculate_Gr               — Fourier transform S(Q) → G(r)
+calculate_Gr              
       │
       ▼
-PDFPostProcess             — low-r constraint, density refinement
+PDFPostProcess             
       │
       ▼
-get_rSq                    — iterative back-transform refinement
       │
       ▼
-Save .G0/.G1/.G3/.S0/.S3
+Save data
 ```
