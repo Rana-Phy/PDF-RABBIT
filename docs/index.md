@@ -6,8 +6,6 @@ PDF-RABBIT is an end-to-end framework for X-ray total scattering analysis, cover
 
 ---
 
-## The Problem
-
 Reducing total scattering data requires several steps:
 
 - Angle dependent intensity corrections — secondary scattering, polarization, absorption, background subtraction, and fluorescence.
@@ -20,15 +18,13 @@ These steps are usually split across different programs and rely on manual treat
 - The local structure obtained can depend strongly on the analysis tools used.
 
 ```{note}
-**Read more:**
+*Read more:*
 
 1. Gallington, L. C. *et al.* [Review of Current Software for Analyzing Total X-ray Scattering Data from Liquids](https://doi.org/10.3390/qubs7020020). *Quantum Beam Science* **2023**, *7*(2), 20.
 2. Stubkjær, R. B. *et al.* [Reliability of Pair Distribution Function Analysis in In Situ Experiments](https://doi.org/10.1107/S1600576725001694). *Journal of Applied Crystallography* **2025**, *58*(2).
 ```
 
 ---
-
-## The Solution
 
 PDF-RABBIT unifies these steps and removes the manual guesswork.
 It tunes the correction parameters by automated optimization:
