@@ -2,6 +2,7 @@
 ### Requirements
 - **Python 3.14** (the wheel is built for CPython 3.14)
 - If you use a different Python version, create a dedicated environment first:
+
 conda create -n pdf-rabbit python=3.14
 conda activate pdf-rabbit
 
