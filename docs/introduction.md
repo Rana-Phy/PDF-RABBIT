@@ -23,4 +23,4 @@ It tunes the correction parameters by automated optimization.
 
 ## Workflow
 
-![PDF-RABBIT workflow](workflow.pdf)
+![PDF-RABBIT workflow](workflow.jpg)
