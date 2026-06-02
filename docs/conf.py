@@ -31,8 +31,8 @@ myst_enable_extensions = [
     "deflist",
 ]
 
-html_logo = "logo.png"
-html_favicon = "logo.png"
+html_logo = "logo.jpg"
+html_favicon = "logo.jpg"
 
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
