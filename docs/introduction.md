@@ -3,6 +3,7 @@
 PDF-RABBIT was developed in the [Laboratory of Structural Inorganic Chemistry](https://strchem.eng.hokudai.ac.jp/) at Hokkaido University, under the supervision of Professor [Akira Miura](https://researchmap.jp/amiura).
 
 PDF-RABBIT is an end-to-end framework for X-ray total scattering analysis, covering data reduction to structural refinement.
+
 Reducing total scattering data requires several steps:
 - Angle dependent intensity corrections — secondary scattering, polarization, absorption, background subtraction, and fluorescence.
 - Normalization to electron units.
@@ -21,6 +22,6 @@ It tunes the correction parameters by automated optimization.
 - To ensure accurate normalization to electronic scale.
 - Such that the extracted `S(Q)` and `F(Q)` obey known physical limits, then extracts `g(r)` and related functions.
 
-# Workflow
+The workflow of PDF-RABBIT is shown in the figure 
 
 ![PDF-RABBIT workflow](workflow.jpg)
