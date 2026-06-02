@@ -68,8 +68,8 @@ ap = AtomicDataProcessor(exp, two_theta)
 bdr_factor, E_prime_keV = ap.calculate_recoil_factor()
 
 # Retrieve scattering factor arrays:
-#   f2  = <f²>  (mean of squared form factors, FSM)
-#   ff  = <f>²  (squared mean form factor, FMS)
+#   f2  = sum c_i<f_i²>  (mean of squared form factors, FSM)
+#   ff  = sum <c_if>²  (squared mean form factor, FMS)
 #   cf  = Compton scattering function (CFF)
 f2, ff, cf, _ = ap.calculate_SF()
 ```
@@ -87,21 +87,6 @@ ic.compute_absorption()            # → ic.A_s_se, ic.A_container
 ic.compute_secondary_scatter()     # → ic.ds
 ic.compute_fluorescence_profile()  # → ic._I_f_raw  (scaled later by f_f)
 ```
-
-**Two-stage fluorescence API**
-
-For synchrotron data with no fluorescence, calling `compute_fluorescence_profile()` with default arguments (all zeros) is still required so the pipeline has a valid `_I_f_raw` array. When fluorescence is present, set `fluorescence_bounds` in `OptSq` to a non-zero range and the optimiser will scale the profile automatically via `apply_fluorescence(f_f)` at negligible cost per iteration.
-
-For laboratory (tube) sources with Bremsstrahlung, pass `f_Br` and `lab_kwargs`:
-
-```python
-ic.compute_fluorescence_profile(
-    f_Br       = 0.05,
-    lab_kwargs = dict(Ee=60, E0=0.5, w=0.2, L_T=0.1,
-                      L_F=0.05, Z_anode=47, Z_filter=45),
-)
-```
-
 ---
 
 ## Step 5 — Optimise S(Q)
@@ -113,22 +98,20 @@ SQ_optimizer_rk = OptSq(
     Q              = ap.Q,
     two_theta      = two_theta,
     I_sample       = I_raw,
-    I_container    = I_bkg,       # raw counts — PP correction applied internally
+    I_container    = I_bkg,       
 
     # Scattering factor arrays from Step 3
     FSM            = f2,          # <f²>
     FMS            = ff,          # <f>²
     CFF            = cf,          # Compton function
     bdr_factor     = bdr_factor,  # Breit–Dirac recoil factor
+    rho_0          = 0.0757,     # Atomic number density (atoms Å⁻³)
 
     corr           = ic,          # IntensityCorrection object from Step 4
+    bg_q_range     = [0.5, 2.5],  # Arround the short range order peak of capilarry
 
-    # Background derivation: bgscale = min(I_sample) / max(I_container)
-    # over the Q window [bg_q_range[0], bg_q_range[1]].
-    bg_q_range     = [0.92, 33],
-
-    # Q range used for high-Q normalisation (S(Q) → 1 target).
-    high_q_range   = (22, 31.5),
+    
+    high_q_range   = (22, 31.5), # Q range used for high-Q normalisation (S(Q) → 1 target).
 
     # ── Parameter bounds (lo, hi) ──────────────────────────────────────────
     # Setting lo == hi fixes a parameter at that value.
@@ -137,16 +120,8 @@ SQ_optimizer_rk = OptSq(
     fluorescence_bounds  = (0.0001, 1e5),    # fluorescence scaling factor f_f
     comp_damp_bounds     = (0, 1),           # Compton damping exponent
     bdr_order_bounds     = (2, 2),           # Breit–Dirac recoil exponent (fixed at 2)
-    eta1_bounds          = (0, 0),           # cs_bias exponent (inactive for sys_bias='wf')
-    eta2_bounds          = (0, 0),           # wf_bias exponent (inactive; set range to enable)
-
-    # Number density (atoms Å⁻³). Required for scaling_by='integration'.
-    rho_0          = 0.0757,
-
-    # Systematic bias correction mode: 'wf' | 'cs' | 'full'
-    sys_bias       = 'wf',
-
-    # Normalisation method: 'mean' (high-Q ratio) | 'integration' (Krogh-Moe / Norman)
+    sys_bias       = 'wf', # Systematic error correction mode
+    eta2_bounds          = (0, 0),           # wf_bias exponent (inactive; classical krogh-Moe/Normman normalization method)
     scaling_by     = 'integration',
 )
 
@@ -156,34 +131,6 @@ optimizer.optimize()
 SQ_optimizer_rk.report()          # print quality metrics and optimised parameters
 sq_results_rk = SQ_optimizer_rk.get_results()
 ```
-
-**Key parameter guide**
-
-| Parameter | Typical range | Notes |
-|---|---|---|
-| `bg_q_range` | `[Q_min, Q_max]` Å⁻¹ | Window for background scale derivation; should sit in a flat, featureless region |
-| `high_q_range` | `(Q_lo, Q_hi)` Å⁻¹ | Should span at least ~10 Å⁻¹; avoid artefacts at the data edge |
-| `polfact_bounds` | `(0.8, 1.0)` | Only float when lab source with significant polarisation |
-| `fluorescence_bounds` | `(0, 0)` → no fluorescence; `(1e-4, 1e5)` → float | Scale with caution: large f_f can distort low-Q |
-| `comp_damp_bounds` | `(0, 1)` | Damps Compton function at high Q; useful for noisy data |
-| `bdr_order_bounds` | `(2, 2)` fixed; `(2, 3)` float | 2 = energy-integrated detector, 3 = photon-counting |
-| `scaling_by` | `'integration'` | Preferred when `rho_0` is known; `'mean'` is robust when density is uncertain |
-| `sys_bias` | `'wf'` | Use `'full'` to activate both cs and wf bias terms simultaneously |
-
-**Optimising the background Q-window lower bound**
-
-If the optimal low-Q cutoff for background subtraction is uncertain, pass `bg_q_min_bounds` to run an automatic two-stage coarse/fine grid scan:
-
-```python
-SQ_optimizer_rk = OptSq(
-    ...
-    bg_q_range     = [0.5, 33],       # wide window; lower bound will be refined
-    bg_q_min_bounds = (0.5, 5.0),     # search range for the lower bound
-)
-```
-
-The winning lower bound is the one that minimises `|S(0) − S₀_theoretical| + max(0, S(0) − min(S(Q)))`.
-
 ---
 
 ## Step 6 — Calculate G(r)
