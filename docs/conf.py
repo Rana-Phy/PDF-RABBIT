@@ -19,8 +19,8 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # Stock Read the Docs theme — no customizations.
 html_theme = "sphinx_rtd_theme"
 html_title = "PDF-RABBIT"
-html_logo = "logo.svg"
-html_favicon = "logo.svg"
+html_logo = "logo_v1.svg"
+html_favicon = "logo_v1.svg"
 
 myst_enable_extensions = [
     "colon_fence",
