@@ -1,15 +1,35 @@
-/* Resize the logo to 50% — uses the theme's specific selector + !important so it actually applies */
+/* Logo at 50% */
 .wy-side-nav-search > a img.logo {
     width: 50% !important;
     height: auto !important;
 }
 
-/* Recolor ONLY the blue top block (logo + search area) */
-.wy-side-nav-search {
+/* White sidebar: top block + menu area */
+.wy-side-nav-search,
+.wy-nav-side {
     background-color: #ffffff;
 }
 
-/* Keep the version label readable on the light background */
+/* Make the menu text dark so it shows on white */
+.wy-menu-vertical a {
+    color: #404040;
+}
+.wy-menu-vertical a:hover {
+    background-color: #f0f0f0;
+    color: #404040;
+}
+.wy-menu-vertical li.current > a {
+    background-color: #ececec;
+    color: #202020;
+}
+.wy-menu-vertical li.current a:hover {
+    background-color: #e3e3e3;
+    color: #202020;
+}
+
+/* Version label + CONTENTS caption */
 .wy-side-nav-search .version {
     color: #404040;
 }
+.wy-menu-vertical .caption-text {
+    color: #
