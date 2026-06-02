@@ -1,9 +1,15 @@
-/* top area with the logo, version, and search box */
+/* Resize the logo to 50% of the sidebar width */
+.wy-side-nav-search img {
+    width: 50%;
+    height: auto;
+}
+
+/* Recolor ONLY the blue top block (logo + search area) */
 .wy-side-nav-search {
     background-color: #ffffff;
 }
 
-/* the rest of the left sidebar (the nav links) */
-.wy-nav-side {
-    background-color: #ffffff;
+/* Keep the version label readable on the light background */
+.wy-side-nav-search .version {
+    color: #404040;
 }
