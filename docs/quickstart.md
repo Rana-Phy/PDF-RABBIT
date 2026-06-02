@@ -44,7 +44,7 @@ XrayDataPlotter(data_processor).plot()   # inspect raw vs background
 
 ```python
 exp = ExperimentalInfo(
-    geometry            = 'cylindrical',   # 'cylindrical' | 'flat-plate' | 'linear'
+    geometry            = 'cylindrical',  
     sample_composition  = 'CeO2',
     sample_density      = 7.22,            # g cm⁻³ 
     container_composition = 'SiO2',
@@ -54,20 +54,11 @@ exp = ExperimentalInfo(
     wavelength          = 0.247949,        # Å   — synchrotron wavelength
 )
 ```
-
-**Geometry options**
-
-| Value | Use case |
-|---|---|
-| `'cylindrical'` | Capillary / Debye–Scherrer geometry |
-| `'flat-plate'` | Transmission or reflection flat-plate |
-| `'linear'` | Simple path-length geometry |
-
 ---
 
 ## Step 3 — Compute Atomic Scattering Factors
 
-`AtomicDataProcessor` calculates Q-dependent form factors, the Compton (incoherent) scattering function, and the Breit–Dirac recoil factor for the given composition and geometry.
+`AtomicDataProcessor` calculates Q-dependent form factors, the Compton scattering, and the Breit–Dirac recoil factor.
 
 ```python
 ap = AtomicDataProcessor(exp, two_theta)
