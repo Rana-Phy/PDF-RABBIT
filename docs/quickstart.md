@@ -2,7 +2,7 @@
 This guide demonstrates how to obtain **S(Q)** and **G(r)** from X-ray diffraction data using PDF-Rabbit.
 - Only the **Step 0 — User Inputs** section needs to be modified for a particular experiment.
 - The remainder of the workflow can typically be executed without changes.
-# Step 0 — User Inputs
+## Step 0 — User Inputs
 Edit only the variables below.
 ```python
 # ============================================================
@@ -52,7 +52,7 @@ peak_search_max = 2.5  # upper bound for first-shell peak search (Å)
 predip_search_min = 1.0  # lower bound for pre-peak dip search (Å)
 predip_search_max = 1.9  # upper bound for pre-peak dip search (Å)
 ```
-# Step 1 — Load Libraries
+## Step 1 — Load Libraries
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
@@ -65,7 +65,7 @@ from calculate_rpdf import calculate_Gr
 from rpdf_postprocess import PDFPostProcess
 from rpdf_to_Sq import get_rSq
 ```
-# Step 2 — Load Raw Data
+## Step 2 — Load Raw Data
 ```python
 data_processor = XrayDataProcessor(
     sample_path    = folder + data_file,
@@ -75,7 +75,7 @@ two_theta, I_raw, I_bkg = data_processor.get_processed_data()
 # Inspect sample and background data
 XrayDataPlotter(data_processor).plot()
 ```
-# Step 3 — Define the Experiment
+## Step 3 — Define the Experiment
 `ExperimentalInfo` stores the experimental parameters used throughout the analysis pipeline.
 ```python
 exp = ExperimentalInfo(
@@ -89,20 +89,20 @@ exp = ExperimentalInfo(
     wavelength            = wavelength,
 )
 ```
-# Step 4 — Compute Atomic Scattering Factors
+## Step 4 — Compute Atomic Scattering Factors
 ```python
 ap = AtomicDataProcessor(exp, two_theta)
 bdr_factor, E_prime_keV = ap.calculate_recoil_factor()
 f2, ff, cf, _           = ap.calculate_SF()
 ```
-# Step 5 — Compute Intensity Corrections
+## Step 5 — Compute Intensity Corrections
 ```python
 ic = IntensityCorrection(ap)
 ic.compute_absorption()            # Paalman–Pings absorption correction
 ic.compute_secondary_scatter()     # Double-scattering contribution
 ic.compute_fluorescence_profile()  # Fluorescence background profile
 ```
-# Step 6 — Optimise S(Q)
+## Step 6 — Optimise S(Q)
 `SqOptimizer` uses the L-BFGS-B algorithm to optimize S(Q).
 The optimization attempts to enforce:
 * S(Q) → 1 at high Q
@@ -134,7 +134,7 @@ optimizer.optimize()
 SQ_optimizer.report()
 sq_results = SQ_optimizer.get_results()
 ```
-# Step 7 — Calculate G(r)
+## Step 7 — Calculate G(r)
 ```python
 q  = SQ_optimizer.Q
 sq = SQ_optimizer.S_FZ_final
@@ -147,7 +147,7 @@ FT_ra = calculate_Gr(
 )
 r, G0, q_interp, Sq_used, fq_initial, fq_used = FT_ra.compute()
 ```
-# Step 8 — Post-process G(r)
+## Step 8 — Post-process G(r)
 `PDFPostProcess` applies low-r constraints and refines the number density.
 ```python
 pp_ra = PDFPostProcess(
@@ -166,7 +166,7 @@ results = pp_ra.process(
 )
 G1 = pp_ra.Gr_final
 ```
-# Step 9 — Save Results
+## Step 9 — Save Results
 ```python
 base_name = data_file.replace('.dat', '')
 np.savetxt(
@@ -189,7 +189,7 @@ Output files:
 *.G1  → post-processed G(r)
 ```
 All files are saved as two-column plain-text files.
-# Pipeline Summary
+## Pipeline Summary
 ```text
 Raw .dat files
       │
