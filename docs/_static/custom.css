@@ -1,10 +1,9 @@
+/* top area with the logo, version, and search box */
 .wy-side-nav-search {
-       background-color: #ffffff;
-   }
-   .wy-side-nav-search > a,
-   .wy-side-nav-search .version {
-       color: #404040;
-   }
-   .wy-side-nav-search input[type="text"] {
-       border: 1px solid #cccccc;
-   }
+    background-color: #ffffff;
+}
+
+/* the rest of the left sidebar (the nav links) */
+.wy-nav-side {
+    background-color: #ffffff;
+}
