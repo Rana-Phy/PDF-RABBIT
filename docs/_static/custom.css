@@ -4,32 +4,12 @@
     height: auto !important;
 }
 
-/* White sidebar: top block + menu area */
-.wy-side-nav-search,
-.wy-nav-side {
+/* Recolor ONLY the top block (logo + search) — not the whole sidebar */
+.wy-side-nav-search {
     background-color: #ffffff;
 }
 
-/* Make the menu text dark so it shows on white */
-.wy-menu-vertical a {
-    color: #404040;
-}
-.wy-menu-vertical a:hover {
-    background-color: #f0f0f0;
-    color: #404040;
-}
-.wy-menu-vertical li.current > a {
-    background-color: #ececec;
-    color: #202020;
-}
-.wy-menu-vertical li.current a:hover {
-    background-color: #e3e3e3;
-    color: #202020;
-}
-
-/* Version label + CONTENTS caption */
+/* The version label sits in that white block, so darken it to stay visible */
 .wy-side-nav-search .version {
     color: #404040;
 }
-.wy-menu-vertical .caption-text {
-    color: #
