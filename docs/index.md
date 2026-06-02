@@ -24,7 +24,7 @@ It tunes the correction parameters by automated optimization.
 ```{toctree}
 :maxdepth: 2
 :caption: Contents
-
+introduction
 installation
 quickstart
 theory
