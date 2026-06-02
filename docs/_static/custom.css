@@ -1,0 +1,10 @@
+.wy-side-nav-search {
+       background-color: #ffffff;
+   }
+   .wy-side-nav-search > a,
+   .wy-side-nav-search .version {
+       color: #404040;
+   }
+   .wy-side-nav-search input[type="text"] {
+       border: 1px solid #cccccc;
+   }
