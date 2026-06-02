@@ -33,3 +33,6 @@ myst_enable_extensions = [
 
 html_logo = "logo.png"
 html_favicon = "logo.png"
+
+html_static_path = ["_static"]
+html_css_files = ["custom.css"]
