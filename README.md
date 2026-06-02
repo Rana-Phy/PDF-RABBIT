@@ -31,9 +31,17 @@ PDF-RABBIT is designed to analyze changes in local structural features from high
 
 ---
 
-## Examples
+## Requirements
 
-Provided in the [`notebooks/`](./notebooks) directory of this repository.
+- **Python 3.14** (the wheel is built for CPython 3.14)
+- Dependencies are installed automatically: NumPy, SciPy, Matplotlib, Numba, xraydb, tabulate
+
+If you use a different Python version, create a dedicated environment first, for example:
+
+```bash
+conda create -n pdf-rabbit python=3.14
+conda activate pdf-rabbit
+```
 
 ---
 
@@ -41,16 +49,38 @@ Provided in the [`notebooks/`](./notebooks) directory of this repository.
 
 PDF-RABBIT is distributed as a Python wheel (`.whl`).
 
-To request access, please contact the developer (see *Contact* below). Each licensed group receives:
-
-1. A wheel file built specifically for the licensed group
-2. A group activation key
-
-After obtaining these files:
+### From PyPI
 
 ```bash
-pip install pdf_rabbit_<your_group>-<version>-py3-none-any.whl
+pip install pdf_rabbit
 ```
+
+### From a downloaded wheel (GitHub Releases)
+
+Download the latest `.whl` from the [Releases](../../releases) page, then install it directly:
+
+```bash
+pip install pdf_rabbit-<version>-cp314-none-any.whl
+```
+
+All required dependencies are resolved and installed automatically.
+
+---
+
+## Quick start
+
+```python
+from xrd_data_processor import XrayDataProcessor, XrayDataPlotter
+from experimental_info import ExperimentalInfo
+from opt_sq import OptSq, SqOptimizer
+from calculate_rpdf import calculate_Gr
+from rpdf_postprocess import PDFPostProcess
+from rpdf_to_Sq import get_rSq
+
+# ... build your processing workflow ...
+```
+
+Worked examples are provided in the [`notebooks/`](./notebooks) directory of this repository.
 
 ---
 
@@ -60,14 +90,14 @@ PDF-RABBIT is proprietary software distributed free of charge for academic and c
 
 ### Permitted Use
 
-- Installation and use within the licensed group (academic or commercial)
+- Installation and use for academic or commercial research
 - Analysis of experimental data for research, educational, or commercial purposes
 - Publication and reporting of results derived from the software, with appropriate citation where applicable
 
 ### Prohibited Use
 
-- Redistribution of the wheel file, activation key, or any part of the software outside the licensed group
-- Modification, reverse engineering, or repackaging of the software into a commercial product
+- Rebranding, or redistributing the software under a different name or as part of another product
+- Incorporation into a commercial product
 
 Commercial users, including industrial laboratories, CROs, and other for-profit organizations, are encouraged to make a good-faith donation to support continued development and maintenance.
 
@@ -83,11 +113,11 @@ Adapt the following text according to the scope of analysis performed.
 
 **For data reduction and PDF extraction:**
 
-> “Normalization to electron units, structure factor `S(Q)`, and pair distribution function `G(r)` were obtained using PDF-RABBIT, a self-consistent optimization framework for X-ray total scattering analysis.”
+> "Normalization to electron units, structure factor `S(Q)`, and pair distribution function `G(r)` were obtained using PDF-RABBIT, a self-consistent optimization framework for X-ray total scattering analysis."
 
 **When small-box refinement is performed using the same framework:**
 
-> “Small-box refinement was performed using PDF-RABBIT.”
+> "Small-box refinement was performed using PDF-RABBIT."
 
 To promote reproducibility, users are encouraged to report optimized parameters in the Supplementary Information where appropriate.
 
@@ -95,25 +125,22 @@ To promote reproducibility, users are encouraged to report optimized parameters 
 
 ## Contact
 
-### Developer
-
+**Developer**  
 Rana Hossain  
-Postdoctoral Research Associate  
+Postdoctoral Research Associate
 
-### Supervisoion
-
-Akira Miura
-Professor
+**Supervision**  
+Akira Miura  
+Professor  
 Laboratory of Structural Inorganic Chemistry  
 Division of Applied Chemistry, Faculty of Engineering  
 Hokkaido University, Sapporo, Japan
 
-### Email
+**Email**  
+rana.phy.buet@gmail.com; rana@eng.hokudai.ac.jp  
+cc: amiura@eng.hokudai.ac.jp
 
-- rana.phy.buet@gmail.com; rana@eng.hokudai.ac.jp  
-  cc: amiura@eng.hokudai.ac.jp
-
-For access requests, donation inquiries, or general questions, please include:
+For donation inquiries or general questions, please include:
 
 - Full name and designation
 - Laboratory, company, or institution
