@@ -30,3 +30,6 @@ myst_enable_extensions = [
     "colon_fence",
     "deflist",
 ]
+
+html_logo = "logo.png"
+html_favicon = "logo.png"
