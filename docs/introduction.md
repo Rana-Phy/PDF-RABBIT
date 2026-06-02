@@ -1,4 +1,4 @@
-# PDF-RABBIT
+## Introduction
 
 PDF-RABBIT was developed in the [Laboratory of Structural Inorganic Chemistry](https://strchem.eng.hokudai.ac.jp/) at Hokkaido University, under the supervision of Professor [Akira Miura](https://researchmap.jp/amiura).
 
