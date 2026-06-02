@@ -1,133 +1,95 @@
 # Quick Start Guide
 
-This guide demonstrates how to obtain **S(Q)** and **G(r)** using a minimal set of user-defined parameters.
+This guide demonstrates how to obtain **S(Q)** and **G(r)** from X-ray diffraction data using PDF-Rabbit.
 
-For most users, the only section that needs to be modified is the **USER INPUTS** block below. The remainder of the workflow can usually be executed without changes.
+For most users, only the **USER INPUTS** section needs to be modified. The remainder of the workflow can typically be executed without changes.
 
 ---
 
 # Step 0 — User Inputs
 
-Edit the variables below according to your experiment.
+Edit only the variables below.
 
 ```python
 # ============================================================
 # FILES
 # ============================================================
 
-folder         = r"./raw_data/"
-data_file      = "CeO2_10s_0.3mm.dat"
-capillary_file = "quartz_10s_0.3mm_1.dat"
+folder         = r"./raw_data/"             # folder containing diffraction data
+data_file      = "CeO2_10s_0.3mm.dat"      # sample diffraction pattern
+capillary_file = "quartz_10s_0.3mm_1.dat"  # empty capillary / background pattern
 
 # ============================================================
 # SAMPLE INFORMATION
 # ============================================================
 
-sample_composition    = "CeO2"
-sample_density        = 7.22      # g cm⁻³
+sample_composition    = "CeO2"  # chemical formula of the sample
+sample_density        = 7.22    # mass density of the sample (g/cm³)
 
-container_composition = "SiO2"
-container_density     = 2.0       # g cm⁻³
+container_composition = "SiO2"  # chemical formula of the container
+container_density     = 2.0     # mass density of the container (g/cm³)
 
 # ============================================================
 # EXPERIMENTAL SETUP
 # ============================================================
 
-geometry   = "cylindrical"
+geometry   = "cylindrical"  # sample geometry
 
-d_inner    = 0.029    # cm
-d_outer    = 0.030    # cm
+d_inner    = 0.029          # capillary inner diameter (cm)
+d_outer    = 0.030          # capillary outer diameter (cm)
 
-wavelength = 0.247949 # Å
+wavelength = 0.247949       # X-ray wavelength (Å)
 
 # ============================================================
 # S(Q) OPTIMIZATION
 # ============================================================
 
-rho_0          = 0.0757           # atoms Å⁻³
+rho_0        = 0.0757       # atomic number density (atoms/Å³)
 
-bg_q_range     = [0.5, 2.5]
-high_q_range   = (22, 31.5)
+bg_q_range   = [0.5, 2.5]   # Q range containing the capillary short-range-order peak
+high_q_range = (22, 31.5)   # high-Q region used to enforce S(Q) → 1
+
+# ============================================================
+# OPTIMIZATION PARAMETERS
+# ============================================================
+
+# Bounds are specified as:
+# (lower_limit, upper_limit)
+#
+# Examples:
+# (0, 1)  → parameter can vary between 0 and 1
+# (2, 5)  → parameter can vary between 2 and 5
+# (1, 1)  → parameter is fixed at 1 (not optimized)
+# (2, 2)  → parameter is fixed at 2 (not optimized)
+
+polfact_bounds      = (1, 1)         # polarization factor (fixed at 1)
+fluorescence_bounds = (0.0001, 1e5)  # fluorescence scaling factor
+comp_damp_bounds    = (0, 1)         # Compton damping exponent
+bdr_order_bounds    = (2, 2)         # Breit–Dirac recoil exponent (fixed at 2)
+eta2_bounds         = (0, 0)         # wf_bias exponent (disabled)
+
+sys_bias            = "wf"           # systematic-error correction model
+scaling_by          = "integration"  # normalization method
 
 # ============================================================
 # PDF PARAMETERS
 # ============================================================
 
-r_step         = 0.01             # Å
-r_max          = 100              # Å
+r_step = 0.01      # real-space step size (Å)
+r_max  = 100       # maximum r for G(r) calculation (Å)
 
 # ============================================================
 # FIRST-SHELL SEARCH
 # ============================================================
 
-peak_guess        = 2.34
+peak_guess = 2.34  # approximate first-neighbor peak position (Å)
 
-peak_search_min   = 2.1
-peak_search_max   = 2.5
+peak_search_min = 2.1  # lower bound for first-shell peak search (Å)
+peak_search_max = 2.5  # upper bound for first-shell peak search (Å)
 
-predip_search_min = 1.0
-predip_search_max = 1.9
+predip_search_min = 1.0  # lower bound for pre-peak dip search (Å)
+predip_search_max = 1.9  # upper bound for pre-peak dip search (Å)
 ```
-
----
-
-## Input Parameter Description
-
-### Files
-
-| Parameter | Description |
-|------------|------------|
-| `folder` | Folder containing the diffraction data files |
-| `data_file` | Sample diffraction pattern |
-| `capillary_file` | Background/container diffraction pattern |
-
-### Sample Information
-
-| Parameter | Description |
-|------------|------------|
-| `sample_composition` | Chemical formula of the sample |
-| `sample_density` | Sample density (g cm⁻³) |
-
-### Container Information
-
-| Parameter | Description |
-|------------|------------|
-| `container_composition` | Chemical formula of the container |
-| `container_density` | Container density (g cm⁻³) |
-
-### Experimental Setup
-
-| Parameter | Description |
-|------------|------------|
-| `geometry` | Measurement geometry |
-| `d_inner` | Inner capillary diameter (cm) |
-| `d_outer` | Outer capillary diameter (cm) |
-| `wavelength` | X-ray wavelength (Å) |
-
-### S(Q) Optimization
-
-| Parameter | Description |
-|------------|------------|
-| `rho_0` | Atomic number density (atoms Å⁻³) |
-| `bg_q_range` | Q range surrounding the container short-range-order peak |
-| `high_q_range` | High-Q normalization region where S(Q) → 1 |
-
-### PDF Parameters
-
-| Parameter | Description |
-|------------|------------|
-| `r_step` | Real-space grid spacing (Å) |
-| `r_max` | Maximum r value (Å) |
-
-### First-Shell Search
-
-| Parameter | Description |
-|------------|------------|
-| `peak_guess` | Initial estimate of the first-neighbor peak position |
-| `peak_search_min` | Lower bound of first-shell peak search |
-| `peak_search_max` | Upper bound of first-shell peak search |
-| `predip_search_min` | Lower bound of pre-peak dip search |
-| `predip_search_max` | Upper bound of pre-peak dip search |
 
 ---
 
@@ -167,7 +129,7 @@ XrayDataPlotter(data_processor).plot()
 
 # Step 3 — Define the Experiment
 
-`ExperimentalInfo` stores all experimental parameters used throughout the workflow.
+`ExperimentalInfo` stores the experimental parameters used throughout the analysis pipeline.
 
 ```python
 exp = ExperimentalInfo(
@@ -193,14 +155,14 @@ bdr_factor, E_prime_keV = ap.calculate_recoil_factor()
 f2, ff, cf, _           = ap.calculate_SF()
 ```
 
-### Output Variables
+Returned variables:
 
-| Variable | Meaning |
-|----------|----------|
-| `bdr_factor` | Breit–Dirac recoil factor (E′/E) |
-| `f2` | Mean squared form factor, ⟨f²⟩ (FSM) |
-| `ff` | Square of mean form factor, ⟨f⟩² (FMS) |
-| `cf` | Compton scattering function (CFF) |
+```python
+bdr_factor  # Breit–Dirac recoil factor (E′/E)
+f2          # Mean squared form factor ⟨f²⟩ (FSM)
+ff          # Square of mean form factor ⟨f⟩² (FMS)
+cf          # Compton scattering function (CFF)
+```
 
 ---
 
@@ -209,16 +171,10 @@ f2, ff, cf, _           = ap.calculate_SF()
 ```python
 ic = IntensityCorrection(ap)
 
-ic.compute_absorption()
-ic.compute_secondary_scatter()
-ic.compute_fluorescence_profile()
+ic.compute_absorption()            # Paalman–Pings absorption correction
+ic.compute_secondary_scatter()     # double-scattering contribution
+ic.compute_fluorescence_profile()  # fluorescence background profile
 ```
-
-### Corrections Applied
-
-- Paalman–Pings absorption correction
-- Double-scattering contribution
-- Fluorescence background correction
 
 ---
 
@@ -228,8 +184,8 @@ ic.compute_fluorescence_profile()
 
 The optimization attempts to satisfy:
 
-- S(Q) → 1 at high Q
-- F(Q) → 0 at high Q
+* S(Q) → 1 at high Q
+* F(Q) → 0 at high Q
 
 ```python
 SQ_optimizer_rk = OptSq(
@@ -249,15 +205,14 @@ SQ_optimizer_rk = OptSq(
     bg_q_range   = bg_q_range,
     high_q_range = high_q_range,
 
-    # Parameter bounds
-    polfact_bounds      = (1, 1),
-    fluorescence_bounds = (0.0001, 1e5),
-    comp_damp_bounds    = (0, 1),
-    bdr_order_bounds    = (2, 2),
-    eta2_bounds         = (0, 0),
+    polfact_bounds      = polfact_bounds,
+    fluorescence_bounds = fluorescence_bounds,
+    comp_damp_bounds    = comp_damp_bounds,
+    bdr_order_bounds    = bdr_order_bounds,
+    eta2_bounds         = eta2_bounds,
 
-    sys_bias            = 'wf',
-    scaling_by          = 'integration',
+    sys_bias            = sys_bias,
+    scaling_by          = scaling_by,
 )
 
 optimizer = SqOptimizer(SQ_optimizer_rk)
@@ -281,22 +236,11 @@ FT_ra = calculate_Gr(
     sq          = sq,
     r_step      = r_step,
     r_max       = r_max,
-    window_type = 1,      # Standard Lorch modification function
+    window_type = 1,   # standard Lorch modification function
 )
 
 r, G0, q_interp, Sq_used, fq_initial, fq_used = FT_ra.compute()
 ```
-
-### Output Variables
-
-| Variable | Description |
-|-----------|------------|
-| `r` | Real-space grid |
-| `G0` | Raw PDF |
-| `q_interp` | Interpolated Q grid |
-| `Sq_used` | Optimized S(Q) |
-| `fq_initial` | Initial F(Q) |
-| `fq_used` | Final F(Q) |
 
 ---
 
@@ -324,14 +268,6 @@ results = pp_ra.process(
 G1 = pp_ra.Gr_final
 ```
 
-### Processing Steps
-
-- First-shell peak identification
-- Pre-peak dip identification
-- Density refinement
-- Low-r correction
-- Final PDF generation
-
 ---
 
 # Step 9 — Save Results
@@ -357,11 +293,11 @@ np.savetxt(
 
 Generated files:
 
-| File | Description |
-|--------|-------------|
-| `.G0` | Raw G(r) |
-| `.G1` | Post-processed G(r) |
-| `.S0` | Optimized S(Q) |
+```text
+*.S0  → optimized S(Q)
+*.G0  → raw G(r)
+*.G1  → post-processed G(r)
+```
 
 All files are saved as two-column plain-text files.
 
@@ -396,43 +332,3 @@ PDFPostProcess
       ▼
 Save G0, G1, S0
 ```
-
----
-
-# Example
-
-```python
-folder         = r"./raw_data/"
-data_file      = "CeO2_10s_0.3mm.dat"
-capillary_file = "quartz_10s_0.3mm_1.dat"
-
-sample_composition    = "CeO2"
-sample_density        = 7.22
-
-container_composition = "SiO2"
-container_density     = 2.0
-
-geometry   = "cylindrical"
-
-d_inner    = 0.029
-d_outer    = 0.030
-
-wavelength = 0.247949
-
-rho_0      = 0.0757
-
-bg_q_range   = [0.5, 2.5]
-high_q_range = (22, 31.5)
-
-r_step = 0.01
-r_max  = 100
-
-peak_guess        = 2.34
-peak_search_min   = 2.1
-peak_search_max   = 2.5
-
-predip_search_min = 1.0
-predip_search_max = 1.9
-```
-
-After defining these parameters, the remaining workflow can be executed without modification.
