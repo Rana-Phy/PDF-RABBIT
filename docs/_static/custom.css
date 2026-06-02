@@ -4,12 +4,8 @@
     height: auto !important;
 }
 
-/* Recolor ONLY the top block (logo + search) — not the whole sidebar */
-.wy-side-nav-search {
-    background-color: #ffffff;
-}
-
-/* The version label sits in that white block, so darken it to stay visible */
-.wy-side-nav-search .version {
-    color: #404040;
+/* Sidebar color — dark slate */
+.wy-side-nav-search,
+.wy-nav-side {
+    background-color: #2c3e50;
 }
