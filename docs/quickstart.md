@@ -7,9 +7,6 @@ This guide walks through a complete X-ray total scattering analysis from raw dat
 ## Prerequisites
 
 ```python
-import sys
-sys.path.append(r"C:\pdf_rabbit\compiled")
-import os
 import numpy as np
 import matplotlib.pyplot as plt
 
