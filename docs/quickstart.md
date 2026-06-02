@@ -24,10 +24,7 @@ from rpdf_to_Sq import get_rSq
 
 ---
 
-## Step 1 — Load and Pre-process Raw Data
-
-`XrayDataProcessor` loads the sample and container (capillary/background) diffraction files, masks detector dead zones, and optionally extrapolates the low-angle region.
-
+## Step 1 — Load Raw Data
 ```python
 folder = r"./raw_data/"
 data_file      = 'CeO2_10s_0.3mm.dat'
@@ -35,35 +32,11 @@ capillary_file = 'quartz_10s_0.3mm_1.dat'
 
 data_processor = XrayDataProcessor(
     sample_path    = folder + data_file,
-    container_path = folder + capillary_file,
-
-    # Dead-zone / step mask: exclude detector gaps near these 2θ positions.
-    # Each value is the centre of a gap; step_window_pts sets the half-width.
-    sample_step_positions = [64.115, 70],
-    step_window_pts       = 500,
-
-    # Minimum usable 2θ angle (degrees). Data below this are discarded.
-    tth_min = 0.8,
-
-    # Extrapolate the low-angle region to reach [0.03°, 0.9°].
-    # Useful when the beam-stop cuts off data before the first measured point.
-    extrapolate_to = [0.03, 0.9],
-)
+    container_path = folder + capillary_file)
 
 two_theta, I_raw, I_bkg = data_processor.get_processed_data()
 XrayDataPlotter(data_processor).plot()   # inspect raw vs background
 ```
-
-**Key parameters**
-
-| Parameter | Description |
-|---|---|
-| `sample_step_positions` | 2θ positions (°) of detector gaps to mask |
-| `step_window_pts` | Number of points masked on each side of a gap |
-| `tth_min` | Low-angle cut-off (°) |
-| `extrapolate_to` | `[tth_start, tth_end]` range to extrapolate toward (°) |
-
----
 
 ## Step 2 — Define the Experiment
 
@@ -73,9 +46,9 @@ XrayDataPlotter(data_processor).plot()   # inspect raw vs background
 exp = ExperimentalInfo(
     geometry            = 'cylindrical',   # 'cylindrical' | 'flat-plate' | 'linear'
     sample_composition  = 'CeO2',
-    sample_density      = 7.22,            # g cm⁻³  (set < true density to account for packing)
+    sample_density      = 7.22,            # g cm⁻³ 
     container_composition = 'SiO2',
-    container_density   = 2.0,             # g cm⁻³  (effective wall density)
+    container_density   = 2.0,             # g cm⁻³  
     d_inner             = 0.029,           # cm  — inner diameter of capillary
     d_outer             = 0.03,            # cm  — outer diameter of capillary
     wavelength          = 0.247949,        # Å   — synchrotron wavelength
