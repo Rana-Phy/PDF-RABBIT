@@ -7,21 +7,18 @@ Reducing total scattering data requires several steps:
 - Angle dependent intensity corrections — secondary scattering, polarization, absorption, background subtraction, and fluorescence.
 - Normalization to electron units.
 - Subtraction of incoherent and Laue monotonic scattering.
-
 These steps are usually split across different programs and rely on manual treatment. As a result, for the same total scattering data:
 - The resulting `S(Q)` and `g(r)` are hard to reproduce.
 - The local structure obtained can depend strongly on the analysis tools used.
--
+
 *Read more:*
 1. Gallington, L. C. *et al.* [Review of Current Software for Analyzing Total X-ray Scattering Data from Liquids](https://doi.org/10.3390/qubs7020020). *Quantum Beam Science* **2023**, *7*(2), 20.
 2. Stubkjær, R. B. *et al.* [Reliability of Pair Distribution Function Analysis in In Situ Experiments](https://doi.org/10.1107/S1600576725001694). *Journal of Applied Crystallography* **2025**, *58*(2).
--
+
 PDF-RABBIT unifies these steps and removes the manual guesswork.
-- It tunes the correction parameters by automated optimization
--
+- It tunes the correction parameters by automated optimization.
 To ensure
-- Accurate normalization to electronic scale
--
+- Accurate normalization to electronic scale.
 Such that
 - The extracted `S(Q)` and `F(Q)` obey known physical limits, then extracts `g(r)` and related functions.
 
@@ -33,4 +30,3 @@ installation
 quickstart
 theory
 examples
-```
