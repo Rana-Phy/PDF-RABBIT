@@ -1,20 +1,22 @@
 # Quick Start Guide
 
-This guide walks through a complete X-ray total scattering analysis from raw data to a refined pair distribution function G(r), using CeO₂ in a 0.3 mm quartz capillary as the worked example.
-
+This guide demonstrates obtaining S(Q) and G(r) with minimum input parameters.
+ 
 ---
 
-## Prerequisites
+## Load Libraires
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 
-from experimental_info import ExperimentalInfo
 from xrd_data_processor import XrayDataProcessor, XrayDataPlotter
+from experimental_info import ExperimentalInfo
 from atomic_data_processor import AtomicDataProcessor
+
 from intensity_correction import IntensityCorrection
 from opt_sq import OptSq, SqOptimizer
+
 from calculate_rpdf import calculate_Gr
 from rpdf_postprocess import PDFPostProcess
 from rpdf_to_Sq import get_rSq
