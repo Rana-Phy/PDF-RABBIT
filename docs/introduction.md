@@ -21,6 +21,6 @@ It tunes the correction parameters by automated optimization.
 - To ensure accurate normalization to electronic scale.
 - Such that the extracted `S(Q)` and `F(Q)` obey known physical limits, then extracts `g(r)` and related functions.
 
-## Workflow
+# Workflow
 
 ![PDF-RABBIT workflow](workflow.jpg)
