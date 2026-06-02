@@ -36,7 +36,7 @@ fluorescence_bounds = (0, 1)  # fluorescence scaling factor (can vary from 0 to 
 comp_damp_bounds    = (0, 0)  # Compton damping exponent (fixed at 0)
 bdr_order_bounds    = (2, 2)  # Breit–Dirac recoil exponent (fixed at 2)
 sys_bias            = "wf"           # systematic-error correction model
-eta2_bounds         = (0, 0)         # disabled when sys_bias = "wf"
+eta2_bounds         = (0, 0)         # disabled (fixed at 0): Krogh-Moe/Norman normalization
 scaling_by          = "integration"  # normalization method
 # ============================================================
 # PDF PARAMETERS
