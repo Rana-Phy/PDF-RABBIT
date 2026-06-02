@@ -1,7 +1,7 @@
-/* Resize the logo to 50% of the sidebar width */
-.wy-side-nav-search img {
-    width: 50%;
-    height: auto;
+/* Resize the logo to 50% — uses the theme's specific selector + !important so it actually applies */
+.wy-side-nav-search > a img.logo {
+    width: 50% !important;
+    height: auto !important;
 }
 
 /* Recolor ONLY the blue top block (logo + search area) */
