@@ -32,15 +32,34 @@ It tunes the correction parameters by automated optimization:
 - To ensure accurate normalization to electronic scale.
 - Such that the extracted `S(Q)` and `F(Q)` obey known physical limits, then extracts `g(r)` and related functions.
 
+The toolkit works in two steps: **Chapter 1** reduces raw data to `G(r)`;
+**Chapter 2** fits a structural model to that `G(r)`.
+
 ---
 
 ```{toctree}
-:maxdepth: 2
-:caption: Contents
+:maxdepth: 1
+:caption: Getting Started
 
 introduction
 installation
+```
+
+```{toctree}
+:maxdepth: 2
+:caption: Chapter 1 · Data Reduction
+
 quickstart
 theory
 examples
+```
+
+```{toctree}
+:maxdepth: 2
+:caption: Chapter 2 · Small-Box Refinement
+
+rquickstart
+reference
+disorder
+comparison
 ```
