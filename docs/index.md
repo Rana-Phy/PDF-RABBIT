@@ -1,7 +1,7 @@
 # PDF-RABBIT
-
+```
 PDF-RABBIT is developed in the [Laboratory of Structural Inorganic Chemistry](https://strchem.eng.hokudai.ac.jp/) at Hokkaido University, under the supervision of Professor [Akira Miura](https://researchmap.jp/amiura).
-
+```
 PDF-RABBIT is an end-to-end framework for X-ray total scattering analysis, covering data reduction to structural refinement.
 
 ---
@@ -17,9 +17,7 @@ These steps are usually split across different programs and rely on manual treat
 - The resulting `S(Q)` and `g(r)` are hard to reproduce.
 - The local structure obtained can depend strongly on the analysis tools used.
 
-```{note}
-*Read more:*
-
+```{Read more:}
 1. Gallington, L. C. *et al.* [Review of Current Software for Analyzing Total X-ray Scattering Data from Liquids](https://doi.org/10.3390/qubs7020020). *Quantum Beam Science* **2023**, *7*(2), 20.
 2. Stubkjær, R. B. *et al.* [Reliability of Pair Distribution Function Analysis in In Situ Experiments](https://doi.org/10.1107/S1600576725001694). *Journal of Applied Crystallography* **2025**, *58*(2).
 ```
