@@ -24,4 +24,4 @@ It tunes the correction parameters by automated optimization.
 
 The workflow of PDF-RABBIT is shown in the figure 
 
-![PDF-RABBIT workflow](workflow.pdf)
+![PDF-RABBIT workflow](workflow.png)
